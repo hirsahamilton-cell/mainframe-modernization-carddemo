@@ -9,6 +9,10 @@ import org.junit.jupiter.api.Test;
 
 import java.io.IOException;
 import java.math.BigDecimal;
+import java.nio.charset.StandardCharsets;
+import java.nio.file.Files;
+import java.util.Map;
+import java.util.stream.Collectors;
 import java.util.List;
 
 import static com.aws.carddemo.batch.interest.SampleData.ascii;
@@ -60,5 +64,21 @@ class ShippedSampleDataTest {
         assertEquals("05000244537657402022-07-18-01.02.03.450000", interest.substring(262, 304));
         assertEquals("2022071800000002010006System    Over-limit fee for a/c 00000000001", fee.substring(0, 66));
         assertEquals("0000000290{", fee.substring(132, 143));
+    }
+
+    @Test
+    void postedCategoriesAreDefinedInTheTransactionCategoryFile() throws IOException {
+        Map<String, String> categories = Files.readAllLines(ascii("trancatg.txt"), StandardCharsets.US_ASCII).stream()
+                .filter(line -> !line.isBlank())
+                .collect(Collectors.toMap(line -> line.substring(0, 6), line -> line.substring(6, 56).strip()));
+
+        assertEquals("Interest Amount", categories.get(categoryKey(
+                TransactionFactory.INTEREST_TYPE_CODE, TransactionFactory.INTEREST_CATEGORY_CODE)));
+        assertEquals("Over-limit Fee", categories.get(categoryKey(
+                TransactionFactory.FEE_TYPE_CODE, TransactionFactory.OVER_LIMIT_FEE_CATEGORY_CODE)));
+    }
+
+    private static String categoryKey(String typeCode, int categoryCode) {
+        return typeCode + String.format("%04d", categoryCode);
     }
 }
