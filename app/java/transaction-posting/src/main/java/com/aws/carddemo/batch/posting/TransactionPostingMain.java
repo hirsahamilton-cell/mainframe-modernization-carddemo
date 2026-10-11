@@ -18,8 +18,8 @@ import java.util.function.Consumer;
  * Command-line entry point equivalent to the POSTTRAN job step. Reads the ASCII (line-per-record) versions of
  * the input files and writes the posted transactions, the rejects and the updated account and category balance
  * files. Exits with 4 when transactions were rejected (like CBTRN02C) and 12 on an abend condition, in which
- * case no output file is written. Every output is formatted before any file is replaced, and the files are
- * moved into place together.
+ * case no output file is written. Every output is formatted before any file is written, so a record that
+ * does not fit its layout fails the run without touching the outputs.
  *
  * <pre>
  * java -jar transaction-posting.jar DALYTRAN XREF ACCTDATA TCATBAL OUT-TRANSACT OUT-DALYREJS OUT-ACCTDATA OUT-TCATBAL

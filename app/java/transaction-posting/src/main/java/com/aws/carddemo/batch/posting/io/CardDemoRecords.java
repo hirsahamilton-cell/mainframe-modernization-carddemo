@@ -11,8 +11,6 @@ import java.math.BigDecimal;
 import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.nio.file.Path;
-import java.nio.file.StandardCopyOption;
-import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.function.Function;
@@ -36,26 +34,10 @@ public final class CardDemoRecords {
         return records.stream().map(formatter).toList();
     }
 
-    /**
-     * Writes each file to a temporary sibling first and only then moves them all into place, so a failed run
-     * does not leave some outputs updated and others not.
-     */
+    /** Writes already-formatted files in place, so links and permissions on existing outputs are kept. */
     public static void writeAll(Map<Path, List<String>> files) throws IOException {
-        Map<Path, Path> staged = new LinkedHashMap<>();
-        try {
-            for (Map.Entry<Path, List<String>> file : files.entrySet()) {
-                Path target = file.getKey().toAbsolutePath();
-                Path temp = Files.createTempFile(target.getParent(), target.getFileName().toString(), ".tmp");
-                staged.put(temp, target);
-                Files.write(temp, file.getValue(), StandardCharsets.US_ASCII);
-            }
-            for (Map.Entry<Path, Path> move : staged.entrySet()) {
-                Files.move(move.getKey(), move.getValue(), StandardCopyOption.REPLACE_EXISTING);
-            }
-        } finally {
-            for (Path temp : staged.keySet()) {
-                Files.deleteIfExists(temp);
-            }
+        for (Map.Entry<Path, List<String>> file : files.entrySet()) {
+            Files.write(file.getKey(), file.getValue(), StandardCharsets.US_ASCII);
         }
     }
 
