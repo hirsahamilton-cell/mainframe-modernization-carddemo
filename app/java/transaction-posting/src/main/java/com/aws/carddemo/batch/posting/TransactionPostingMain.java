@@ -9,14 +9,17 @@ import com.aws.carddemo.batch.posting.model.TransactionCategoryBalance;
 import java.io.IOException;
 import java.nio.file.Path;
 import java.time.Clock;
+import java.util.LinkedHashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.function.Consumer;
 
 /**
  * Command-line entry point equivalent to the POSTTRAN job step. Reads the ASCII (line-per-record) versions of
  * the input files and writes the posted transactions, the rejects and the updated account and category balance
  * files. Exits with 4 when transactions were rejected (like CBTRN02C) and 12 on an abend condition, in which
- * case no output file is written.
+ * case no output file is written. Every output is formatted before any file is replaced, and the files are
+ * moved into place together.
  *
  * <pre>
  * java -jar transaction-posting.jar DALYTRAN XREF ACCTDATA TCATBAL OUT-TRANSACT OUT-DALYREJS OUT-ACCTDATA OUT-TCATBAL
@@ -52,11 +55,15 @@ public final class TransactionPostingMain {
             return;
         }
 
-        CardDemoRecords.writeAll(Path.of(args[4]), result.postedTransactions(), CardDemoRecords::formatTransaction);
-        CardDemoRecords.writeAll(Path.of(args[5]), result.rejectedTransactions(),
-                CardDemoRecords::formatRejectedTransaction);
-        CardDemoRecords.writeAll(Path.of(args[6]), result.accounts(), CardDemoRecords::formatAccount);
-        CardDemoRecords.writeAll(Path.of(args[7]), result.categoryBalances(), CardDemoRecords::formatCategoryBalance);
+        Map<Path, List<String>> outputs = new LinkedHashMap<>();
+        outputs.put(Path.of(args[4]),
+                CardDemoRecords.formatAll(result.postedTransactions(), CardDemoRecords::formatTransaction));
+        outputs.put(Path.of(args[5]),
+                CardDemoRecords.formatAll(result.rejectedTransactions(), CardDemoRecords::formatRejectedTransaction));
+        outputs.put(Path.of(args[6]), CardDemoRecords.formatAll(result.accounts(), CardDemoRecords::formatAccount));
+        outputs.put(Path.of(args[7]),
+                CardDemoRecords.formatAll(result.categoryBalances(), CardDemoRecords::formatCategoryBalance));
+        CardDemoRecords.writeAll(outputs);
         if (result.returnCode() != 0) {
             System.exit(result.returnCode());
         }

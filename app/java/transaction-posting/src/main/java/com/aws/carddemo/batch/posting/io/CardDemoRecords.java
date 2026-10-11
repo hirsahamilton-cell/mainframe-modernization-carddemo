@@ -11,7 +11,10 @@ import java.math.BigDecimal;
 import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.nio.file.Path;
+import java.nio.file.StandardCopyOption;
+import java.util.LinkedHashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.function.Function;
 
 /** Fixed-width parsers/formatters for the CardDemo ASCII record layouts used by CBTRN02C. */
@@ -28,8 +31,32 @@ public final class CardDemoRecords {
                 .toList();
     }
 
-    public static <T> void writeAll(Path file, List<T> records, Function<T, String> formatter) throws IOException {
-        Files.write(file, records.stream().map(formatter).map(String::stripTrailing).toList(), StandardCharsets.US_ASCII);
+    /** Formats every record, keeping trailing spaces so each line is exactly one fixed-width record. */
+    public static <T> List<String> formatAll(List<T> records, Function<T, String> formatter) {
+        return records.stream().map(formatter).toList();
+    }
+
+    /**
+     * Writes each file to a temporary sibling first and only then moves them all into place, so a failed run
+     * does not leave some outputs updated and others not.
+     */
+    public static void writeAll(Map<Path, List<String>> files) throws IOException {
+        Map<Path, Path> staged = new LinkedHashMap<>();
+        try {
+            for (Map.Entry<Path, List<String>> file : files.entrySet()) {
+                Path target = file.getKey().toAbsolutePath();
+                Path temp = Files.createTempFile(target.getParent(), target.getFileName().toString(), ".tmp");
+                staged.put(temp, target);
+                Files.write(temp, file.getValue(), StandardCharsets.US_ASCII);
+            }
+            for (Map.Entry<Path, Path> move : staged.entrySet()) {
+                Files.move(move.getKey(), move.getValue(), StandardCopyOption.REPLACE_EXISTING);
+            }
+        } finally {
+            for (Path temp : staged.keySet()) {
+                Files.deleteIfExists(temp);
+            }
+        }
     }
 
     /** CVACT01Y. */
