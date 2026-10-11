@@ -3,7 +3,7 @@
       * GnuCOBOL indexed (VSAM KSDS stand-in) files and back.
       * Usage: CDLOADER <MODE>   with INFILE / OUTFILE env vars set.
       *   LOADACCT LOADTCAT LOADXREF LOADXRFA LOADDISC
-      *   DUMPACCT DUMPTCAT
+      *   DUMPACCT DUMPTCAT DUMPTRAN
       ******************************************************************
        IDENTIFICATION DIVISION.
        PROGRAM-ID. CDLOADER.
@@ -16,6 +16,14 @@
            SELECT TEXT-OUT ASSIGN TO OUTFILE
                   ORGANIZATION IS LINE SEQUENTIAL
                   FILE STATUS IS WS-STAT-OUT.
+           SELECT TEXT-OUT-TRAN ASSIGN TO OUTFILE
+                  ORGANIZATION IS LINE SEQUENTIAL
+                  FILE STATUS IS WS-STAT-OUT.
+           SELECT TRAN-KSDS ASSIGN TO TRANFILE
+                  ORGANIZATION IS INDEXED
+                  ACCESS MODE  IS SEQUENTIAL
+                  RECORD KEY   IS RK-TRAN-ID
+                  FILE STATUS  IS WS-STAT-KSDS.
            SELECT ACCT-KSDS ASSIGN TO ACCTFILE
                   ORGANIZATION IS INDEXED
                   ACCESS MODE  IS SEQUENTIAL
@@ -48,6 +56,12 @@
        01  TEXT-IN-REC                  PIC X(300).
        FD  TEXT-OUT.
        01  TEXT-OUT-REC                 PIC X(300).
+       FD  TEXT-OUT-TRAN.
+       01  TEXT-OUT-TRAN-REC            PIC X(350).
+       FD  TRAN-KSDS.
+       01  TRAN-KSDS-REC.
+           05 RK-TRAN-ID                PIC X(16).
+           05 FILLER                    PIC X(334).
        FD  ACCT-KSDS.
        01  ACCT-KSDS-REC.
            05 AK-ACCT-ID                PIC 9(11).
@@ -149,6 +163,17 @@
                  END-READ
                END-PERFORM
                CLOSE TCAT-KSDS TEXT-OUT
+             WHEN 'DUMPTRAN'
+               OPEN INPUT TRAN-KSDS OUTPUT TEXT-OUT-TRAN
+               PERFORM UNTIL WS-EOF = 'Y'
+                 READ TRAN-KSDS
+                   AT END MOVE 'Y' TO WS-EOF
+                   NOT AT END
+                     WRITE TEXT-OUT-TRAN-REC FROM TRAN-KSDS-REC
+                     ADD 1 TO WS-COUNT
+                 END-READ
+               END-PERFORM
+               CLOSE TRAN-KSDS TEXT-OUT-TRAN
              WHEN OTHER
                DISPLAY 'CDLOADER: UNKNOWN MODE ' WS-MODE
                MOVE 8 TO RETURN-CODE
