@@ -11,9 +11,10 @@ import java.io.IOException;
 import java.math.BigDecimal;
 import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
-import java.util.Map;
-import java.util.stream.Collectors;
 import java.util.List;
+import java.util.Map;
+import java.util.regex.Pattern;
+import java.util.stream.Collectors;
 
 import static com.aws.carddemo.batch.interest.SampleData.ascii;
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -75,6 +76,21 @@ class ShippedSampleDataTest {
         assertEquals("Interest Amount", categories.get(categoryKey(
                 TransactionFactory.INTEREST_TYPE_CODE, TransactionFactory.INTEREST_CATEGORY_CODE)));
         assertEquals("Over-limit Fee", categories.get(categoryKey(
+                TransactionFactory.FEE_TYPE_CODE, TransactionFactory.OVER_LIMIT_FEE_CATEGORY_CODE)));
+    }
+
+    @Test
+    void postedCategoriesAreDefinedInTheDb2Seed() throws IOException {
+        String seed = Files.readString(ascii("../../app-transaction-type-db2/ctl/DB2LTCAT.ctl"),
+                StandardCharsets.US_ASCII);
+        Map<String, String> categories = Pattern.compile(
+                "SELECT\\s+'(\\d{2})'\\s*,\\s*'(\\d{4})'\\s*,\\s*'([^']*)'\\s+FROM\\s+DMY")
+                .matcher(seed).results()
+                .collect(Collectors.toMap(match -> match.group(1) + match.group(2), match -> match.group(3)));
+
+        assertEquals("INTEREST AMOUNT", categories.get(categoryKey(
+                TransactionFactory.INTEREST_TYPE_CODE, TransactionFactory.INTEREST_CATEGORY_CODE)));
+        assertEquals("OVER-LIMIT FEE", categories.get(categoryKey(
                 TransactionFactory.FEE_TYPE_CODE, TransactionFactory.OVER_LIMIT_FEE_CATEGORY_CODE)));
     }
 
