@@ -1,0 +1,59 @@
+DALYREPT                              Daily Transaction Report                 Date Range: 2026-01-01 to 2026-01-31
+
+Transaction ID   Account ID  Transaction Type   Tran Category                      Tran Source            Amount
+-------------------------------------------------------------------------------------------------------------------------------------
+EDGE000000000005 00000000050 01-Purchase        0001-Regular Sales Draft           POS TERM
+EDGE000000000008 00000000050 01-Purchase        0001-Regular Sales Draft           POS TERM                  .05
+EDGE000000000011 00000000050 03-Credit          0001-Credit to Account             OPERATOR      -           .05
+EDGE000000000014 00000000050 01-Purchase        0001-Regular Sales Draft           POS TERM         1,234,567.89
+EDGE000000000017 00000000050 01-Purchase        0005-Interest Amount               System                  12.34
+EDGE000000000020 00000000050 01-Purchase        0006-Over-limit Fee                System                  25.00
+EDGE000000000022 00000000050 04-Authorization   0001-Zero dollar authorization     POS TERM
+EDGE000000000024 00000000050 05-Refund          0001-Refund credit                 OPERATOR      -        100.00
+EDGE000000000026 00000000050 07-Adjustment      0001-Sales draft credit adjustment OPERATOR      -          1.50
+EDGE000000000028 00000000050 02-Payment         0002-Electronic payment            OPERATOR      -  1,234,567.89
+EDGE000000000030 00000000050 01-Purchase        0002-Regular Cash Advance          ATM                    100.00
+EDGE000000000032 00000000050 01-Purchase        0002-Regular Cash Advance          ATM                    200.00
+EDGE000000000034 00000000050 01-Purchase        0002-Regular Cash Advance          ATM                    300.00
+EDGE000000000036 00000000050 01-Purchase        0002-Regular Cash Advance          ATM                    400.00
+EDGE000000000038 00000000050 01-Purchase        0002-Regular Cash Advance          ATM                    500.00
+EDGE000000000040 00000000050 01-Purchase        0002-Regular Cash Advance          ATM                    600.00
+Page Total ......................................................................................+      2,035.84
+-------------------------------------------------------------------------------------------------------------------------------------
+DALYREPT                              Daily Transaction Report                 Date Range: 2026-01-01 to 2026-01-31
+
+Transaction ID   Account ID  Transaction Type   Tran Category                      Tran Source            Amount
+-------------------------------------------------------------------------------------------------------------------------------------
+EDGE000000000041 00000000050 01-Purchase        0002-Regular Cash Advance          ATM                    700.00
+EDGE000000000042 00000000050 01-Purchase        0002-Regular Cash Advance          ATM                    800.00
+Account Total....................................................................................+      3,535.84
+-------------------------------------------------------------------------------------------------------------------------------------
+EDGE000000000004 00000000027 01-Purchase        0001-Regular Sales Draft           POS TERM                10.00
+EDGE000000000007 00000000027 05-Refund          0001-Refund credit                 OPERATOR      -         10.00
+EDGE000000000010 00000000027 01-Purchase        0001-Regular Sales Draft           POS TERM                 5.00
+EDGE000000000013 00000000027 05-Refund          0001-Refund credit                 OPERATOR      -          5.00
+EDGE000000000016 00000000027 01-Purchase        0001-Regular Sales Draft           POS TERM                 1.00
+EDGE000000000019 00000000027 05-Refund          0001-Refund credit                 OPERATOR      -          1.00
+Account Total....................................................................................
+-------------------------------------------------------------------------------------------------------------------------------------
+EDGE000000000001 00000000002 01-Purchase        0001-Regular Sales Draft           POS TERM                42.00
+Account Total....................................................................................+         42.00
+-------------------------------------------------------------------------------------------------------------------------------------
+EDGE000000000003 00000000040 01-Purchase        0001-Regular Sales Draft           POS TERM                10.00
+EDGE000000000006 00000000040 01-Purchase        0001-Regular Sales Draft           POS TERM                11.01
+EDGE000000000009 00000000040 01-Purchase        0001-Regular Sales Draft           POS TERM                12.02
+EDGE000000000012 00000000040 01-Purchase        0001-Regular Sales Draft           POS TERM                13.03
+EDGE000000000015 00000000040 01-Purchase        0001-Regular Sales Draft           POS TERM                14.04
+EDGE000000000018 00000000040 01-Purchase        0001-Regular Sales Draft           POS TERM                15.05
+EDGE000000000021 00000000040 01-Purchase        0001-Regular Sales Draft           POS TERM                16.06
+EDGE000000000023 00000000040 01-Purchase        0001-Regular Sales Draft           POS TERM                17.07
+EDGE000000000025 00000000040 01-Purchase        0001-Regular Sales Draft           POS TERM                18.08
+EDGE000000000027 00000000040 01-Purchase        0001-Regular Sales Draft           POS TERM                19.09
+EDGE000000000029 00000000040 01-Purchase        0001-Regular Sales Draft           POS TERM                20.10
+EDGE000000000031 00000000040 01-Purchase        0001-Regular Sales Draft           POS TERM                21.11
+EDGE000000000033 00000000040 01-Purchase        0001-Regular Sales Draft           POS TERM                22.12
+EDGE000000000035 00000000040 01-Purchase        0001-Regular Sales Draft           POS TERM                23.13
+EDGE000000000037 00000000040 01-Purchase        0001-Regular Sales Draft           POS TERM                24.14
+Page Total ......................................................................................+      1,822.19
+-------------------------------------------------------------------------------------------------------------------------------------
+Grand Total......................................................................................+      3,858.03

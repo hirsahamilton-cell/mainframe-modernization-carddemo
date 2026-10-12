@@ -2,8 +2,8 @@
       * Test harness only: converts CardDemo ASCII sample files into
       * GnuCOBOL indexed (VSAM KSDS stand-in) files and back.
       * Usage: CDLOADER <MODE>   with INFILE / OUTFILE env vars set.
-      *   LOADACCT LOADTCAT LOADXREF LOADXRFA LOADDISC
-      *   DUMPACCT DUMPTCAT
+      *   LOADACCT LOADTCAT LOADXREF LOADXRFA LOADDISC LOADTTYP LOADTCTG
+      *   DUMPACCT DUMPTCAT DUMPTRAN
       ******************************************************************
        IDENTIFICATION DIVISION.
        PROGRAM-ID. CDLOADER.
@@ -16,6 +16,14 @@
            SELECT TEXT-OUT ASSIGN TO OUTFILE
                   ORGANIZATION IS LINE SEQUENTIAL
                   FILE STATUS IS WS-STAT-OUT.
+           SELECT TEXT-OUT-TRAN ASSIGN TO OUTFILE
+                  ORGANIZATION IS LINE SEQUENTIAL
+                  FILE STATUS IS WS-STAT-OUT.
+           SELECT TRAN-KSDS ASSIGN TO TRANFILE
+                  ORGANIZATION IS INDEXED
+                  ACCESS MODE  IS SEQUENTIAL
+                  RECORD KEY   IS RK-TRAN-ID
+                  FILE STATUS  IS WS-STAT-KSDS.
            SELECT ACCT-KSDS ASSIGN TO ACCTFILE
                   ORGANIZATION IS INDEXED
                   ACCESS MODE  IS SEQUENTIAL
@@ -42,12 +50,28 @@
                   ACCESS MODE  IS SEQUENTIAL
                   RECORD KEY   IS DK-KEY
                   FILE STATUS  IS WS-STAT-KSDS.
+           SELECT TTYP-KSDS ASSIGN TO TRANTYPE
+                  ORGANIZATION IS INDEXED
+                  ACCESS MODE  IS SEQUENTIAL
+                  RECORD KEY   IS YK-TYPE
+                  FILE STATUS  IS WS-STAT-KSDS.
+           SELECT TCTG-KSDS ASSIGN TO TRANCATG
+                  ORGANIZATION IS INDEXED
+                  ACCESS MODE  IS SEQUENTIAL
+                  RECORD KEY   IS GK-KEY
+                  FILE STATUS  IS WS-STAT-KSDS.
        DATA DIVISION.
        FILE SECTION.
        FD  TEXT-IN.
        01  TEXT-IN-REC                  PIC X(300).
        FD  TEXT-OUT.
        01  TEXT-OUT-REC                 PIC X(300).
+       FD  TEXT-OUT-TRAN.
+       01  TEXT-OUT-TRAN-REC            PIC X(350).
+       FD  TRAN-KSDS.
+       01  TRAN-KSDS-REC.
+           05 RK-TRAN-ID                PIC X(16).
+           05 FILLER                    PIC X(334).
        FD  ACCT-KSDS.
        01  ACCT-KSDS-REC.
            05 AK-ACCT-ID                PIC 9(11).
@@ -70,6 +94,14 @@
        01  DISC-KSDS-REC.
            05 DK-KEY                    PIC X(16).
            05 FILLER                    PIC X(34).
+       FD  TTYP-KSDS.
+       01  TTYP-KSDS-REC.
+           05 YK-TYPE                   PIC X(02).
+           05 FILLER                    PIC X(58).
+       FD  TCTG-KSDS.
+       01  TCTG-KSDS-REC.
+           05 GK-KEY                    PIC X(06).
+           05 FILLER                    PIC X(54).
        WORKING-STORAGE SECTION.
        01  WS-MODE                      PIC X(08).
        01  WS-STAT-IN                   PIC XX.
@@ -125,6 +157,24 @@
                  PERFORM READ-IN
                END-PERFORM
                CLOSE TEXT-IN DISC-KSDS
+             WHEN 'LOADTTYP'
+               OPEN INPUT TEXT-IN OUTPUT TTYP-KSDS
+               PERFORM READ-IN
+               PERFORM UNTIL WS-EOF = 'Y'
+                 WRITE TTYP-KSDS-REC FROM TEXT-IN-REC
+                 PERFORM CHECK-KSDS
+                 PERFORM READ-IN
+               END-PERFORM
+               CLOSE TEXT-IN TTYP-KSDS
+             WHEN 'LOADTCTG'
+               OPEN INPUT TEXT-IN OUTPUT TCTG-KSDS
+               PERFORM READ-IN
+               PERFORM UNTIL WS-EOF = 'Y'
+                 WRITE TCTG-KSDS-REC FROM TEXT-IN-REC
+                 PERFORM CHECK-KSDS
+                 PERFORM READ-IN
+               END-PERFORM
+               CLOSE TEXT-IN TCTG-KSDS
              WHEN 'DUMPACCT'
                OPEN INPUT ACCT-KSDS OUTPUT TEXT-OUT
                PERFORM UNTIL WS-EOF = 'Y'
@@ -149,6 +199,17 @@
                  END-READ
                END-PERFORM
                CLOSE TCAT-KSDS TEXT-OUT
+             WHEN 'DUMPTRAN'
+               OPEN INPUT TRAN-KSDS OUTPUT TEXT-OUT-TRAN
+               PERFORM UNTIL WS-EOF = 'Y'
+                 READ TRAN-KSDS
+                   AT END MOVE 'Y' TO WS-EOF
+                   NOT AT END
+                     WRITE TEXT-OUT-TRAN-REC FROM TRAN-KSDS-REC
+                     ADD 1 TO WS-COUNT
+                 END-READ
+               END-PERFORM
+               CLOSE TRAN-KSDS TEXT-OUT-TRAN
              WHEN OTHER
                DISPLAY 'CDLOADER: UNKNOWN MODE ' WS-MODE
                MOVE 8 TO RETURN-CODE
