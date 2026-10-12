@@ -3,6 +3,7 @@
       * GnuCOBOL indexed (VSAM KSDS stand-in) files and back.
       * Usage: CDLOADER <MODE>   with INFILE / OUTFILE env vars set.
       *   LOADACCT LOADTCAT LOADXREF LOADXRFA LOADDISC LOADTTYP LOADTCTG
+      *   LOADCUST LOADTRXF
       *   DUMPACCT DUMPTCAT DUMPTRAN
       ******************************************************************
        IDENTIFICATION DIVISION.
@@ -19,6 +20,16 @@
            SELECT TEXT-OUT-TRAN ASSIGN TO OUTFILE
                   ORGANIZATION IS LINE SEQUENTIAL
                   FILE STATUS IS WS-STAT-OUT.
+           SELECT CUST-KSDS ASSIGN TO CUSTFILE
+                  ORGANIZATION IS INDEXED
+                  ACCESS MODE  IS SEQUENTIAL
+                  RECORD KEY   IS CK-CUST-ID
+                  FILE STATUS  IS WS-STAT-KSDS.
+           SELECT TRXF-KSDS ASSIGN TO TRNXFILE
+                  ORGANIZATION IS INDEXED
+                  ACCESS MODE  IS SEQUENTIAL
+                  RECORD KEY   IS FK-TRNX-KEY
+                  FILE STATUS  IS WS-STAT-KSDS.
            SELECT TRAN-KSDS ASSIGN TO TRANFILE
                   ORGANIZATION IS INDEXED
                   ACCESS MODE  IS SEQUENTIAL
@@ -63,11 +74,19 @@
        DATA DIVISION.
        FILE SECTION.
        FD  TEXT-IN.
-       01  TEXT-IN-REC                  PIC X(300).
+       01  TEXT-IN-REC                  PIC X(500).
        FD  TEXT-OUT.
        01  TEXT-OUT-REC                 PIC X(300).
        FD  TEXT-OUT-TRAN.
        01  TEXT-OUT-TRAN-REC            PIC X(350).
+       FD  CUST-KSDS.
+       01  CUST-KSDS-REC.
+           05 CK-CUST-ID                PIC X(09).
+           05 FILLER                    PIC X(491).
+       FD  TRXF-KSDS.
+       01  TRXF-KSDS-REC.
+           05 FK-TRNX-KEY               PIC X(32).
+           05 FILLER                    PIC X(318).
        FD  TRAN-KSDS.
        01  TRAN-KSDS-REC.
            05 RK-TRAN-ID                PIC X(16).
@@ -175,6 +194,24 @@
                  PERFORM READ-IN
                END-PERFORM
                CLOSE TEXT-IN TCTG-KSDS
+             WHEN 'LOADCUST'
+               OPEN INPUT TEXT-IN OUTPUT CUST-KSDS
+               PERFORM READ-IN
+               PERFORM UNTIL WS-EOF = 'Y'
+                 WRITE CUST-KSDS-REC FROM TEXT-IN-REC
+                 PERFORM CHECK-KSDS
+                 PERFORM READ-IN
+               END-PERFORM
+               CLOSE TEXT-IN CUST-KSDS
+             WHEN 'LOADTRXF'
+               OPEN INPUT TEXT-IN OUTPUT TRXF-KSDS
+               PERFORM READ-IN
+               PERFORM UNTIL WS-EOF = 'Y'
+                 WRITE TRXF-KSDS-REC FROM TEXT-IN-REC
+                 PERFORM CHECK-KSDS
+                 PERFORM READ-IN
+               END-PERFORM
+               CLOSE TEXT-IN TRXF-KSDS
              WHEN 'DUMPACCT'
                OPEN INPUT ACCT-KSDS OUTPUT TEXT-OUT
                PERFORM UNTIL WS-EOF = 'Y'

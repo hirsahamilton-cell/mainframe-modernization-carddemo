@@ -1,0 +1,551 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>HTML Table Layout</title>
+</head>
+<body style="margin:0px;">
+<table  align="center" frame="box" style="width:70%; font:12px Segoe UI,sans-serif;">
+<tr>
+<td colspan="3" style="padding:0px 5px;background-color:#1d1d96b3;">
+<h3>Statement for Account Number: 00000000050         </h3>
+</td>
+</tr>
+<tr>
+<td colspan="3" style="padding:0px 5px;background-color:#FFAF33;">
+<p style="font-size:16px">Bank of XYZ</p>
+<p>410 Terry Ave N</p>
+<p>Seattle WA 99999</p>
+</td>
+</tr>
+<tr>
+<td colspan="3" style="padding:0px 5px;background-color:#f2f2f2;">
+<p style="font-size:16px">Aniya Alba Von  </p>
+<p>1588 Nienow Cape  </p>
+<p>Suite 187  </p>
+<p>New OR USA 04257  </p>
+</td>
+</tr>
+<tr>
+<td colspan="3" style="padding:0px 5px;background-color:#33FFD1; text-align:center;">
+<p style="font-size:16px">Basic Details</p>
+</td>
+</tr>
+<tr>
+<td colspan="3" style="padding:0px 5px;background-color:#f2f2f2;">
+<p>Account ID         : 00000000050         </p>
+<p>Current Balance    : 000001945.87 </p>
+<p>FICO Score         : 623                 </p>
+</td>
+</tr>
+<tr>
+<td colspan="3" style="padding:0px 5px;background-color:#33FFD1; text-align:center;">
+<p style="font-size:16px">Transaction Summary</p>
+</td>
+</tr>
+<tr>
+<td style="width:25%; padding:0px 5px; background-color:#33FF5E; text-align:left;">
+<p style="font-size:16px">Tran ID</p>
+</td>
+<td style="width:55%; padding:0px 5px; background-color:#33FF5E; text-align:left;">
+<p style="font-size:16px">Tran Details</p>
+</td>
+<td style="width:20%; padding:0px 5px; background-color:#33FF5E; text-align:right;">
+<p style="font-size:16px">Amount</p>
+</td>
+</tr>
+<tr>
+<td style="width:25%; padding:0px 5px; background-color:#f2f2f2; text-align:left;">
+<p>9000000000000001</p>
+</td>
+<td style="width:55%; padding:0px 5px; background-color:#f2f2f2; text-align:left;">
+<p>Purchase 01 of 12 at Corner Store                </p>
+</td>
+<td style="width:20%; padding:0px 5px; background-color:#f2f2f2; text-align:right;">
+<p>        1.00 </p>
+</td>
+</tr>
+<tr>
+<td style="width:25%; padding:0px 5px; background-color:#f2f2f2; text-align:left;">
+<p>9000000000000002</p>
+</td>
+<td style="width:55%; padding:0px 5px; background-color:#f2f2f2; text-align:left;">
+<p>Purchase 02 of 12 at Corner Store                </p>
+</td>
+<td style="width:20%; padding:0px 5px; background-color:#f2f2f2; text-align:right;">
+<p>        2.00 </p>
+</td>
+</tr>
+<tr>
+<td style="width:25%; padding:0px 5px; background-color:#f2f2f2; text-align:left;">
+<p>9000000000000003</p>
+</td>
+<td style="width:55%; padding:0px 5px; background-color:#f2f2f2; text-align:left;">
+<p>Purchase 03 of 12 at Corner Store                </p>
+</td>
+<td style="width:20%; padding:0px 5px; background-color:#f2f2f2; text-align:right;">
+<p>        3.00 </p>
+</td>
+</tr>
+<tr>
+<td style="width:25%; padding:0px 5px; background-color:#f2f2f2; text-align:left;">
+<p>9000000000000004</p>
+</td>
+<td style="width:55%; padding:0px 5px; background-color:#f2f2f2; text-align:left;">
+<p>Purchase 04 of 12 at Corner Store                </p>
+</td>
+<td style="width:20%; padding:0px 5px; background-color:#f2f2f2; text-align:right;">
+<p>        4.00 </p>
+</td>
+</tr>
+<tr>
+<td style="width:25%; padding:0px 5px; background-color:#f2f2f2; text-align:left;">
+<p>9000000000000005</p>
+</td>
+<td style="width:55%; padding:0px 5px; background-color:#f2f2f2; text-align:left;">
+<p>Purchase 05 of 12 at Corner Store                </p>
+</td>
+<td style="width:20%; padding:0px 5px; background-color:#f2f2f2; text-align:right;">
+<p>        5.00 </p>
+</td>
+</tr>
+<tr>
+<td style="width:25%; padding:0px 5px; background-color:#f2f2f2; text-align:left;">
+<p>9000000000000006</p>
+</td>
+<td style="width:55%; padding:0px 5px; background-color:#f2f2f2; text-align:left;">
+<p>Purchase 06 of 12 at Corner Store                </p>
+</td>
+<td style="width:20%; padding:0px 5px; background-color:#f2f2f2; text-align:right;">
+<p>        6.00 </p>
+</td>
+</tr>
+<tr>
+<td style="width:25%; padding:0px 5px; background-color:#f2f2f2; text-align:left;">
+<p>9000000000000007</p>
+</td>
+<td style="width:55%; padding:0px 5px; background-color:#f2f2f2; text-align:left;">
+<p>Purchase 07 of 12 at Corner Store                </p>
+</td>
+<td style="width:20%; padding:0px 5px; background-color:#f2f2f2; text-align:right;">
+<p>        7.00 </p>
+</td>
+</tr>
+<tr>
+<td style="width:25%; padding:0px 5px; background-color:#f2f2f2; text-align:left;">
+<p>9000000000000008</p>
+</td>
+<td style="width:55%; padding:0px 5px; background-color:#f2f2f2; text-align:left;">
+<p>Purchase 08 of 12 at Corner Store                </p>
+</td>
+<td style="width:20%; padding:0px 5px; background-color:#f2f2f2; text-align:right;">
+<p>        8.00 </p>
+</td>
+</tr>
+<tr>
+<td style="width:25%; padding:0px 5px; background-color:#f2f2f2; text-align:left;">
+<p>9000000000000009</p>
+</td>
+<td style="width:55%; padding:0px 5px; background-color:#f2f2f2; text-align:left;">
+<p>Purchase 09 of 12 at Corner Store                </p>
+</td>
+<td style="width:20%; padding:0px 5px; background-color:#f2f2f2; text-align:right;">
+<p>        9.00 </p>
+</td>
+</tr>
+<tr>
+<td style="width:25%; padding:0px 5px; background-color:#f2f2f2; text-align:left;">
+<p>9000000000000010</p>
+</td>
+<td style="width:55%; padding:0px 5px; background-color:#f2f2f2; text-align:left;">
+<p>Purchase 10 of 12 at Corner Store                </p>
+</td>
+<td style="width:20%; padding:0px 5px; background-color:#f2f2f2; text-align:right;">
+<p>       10.00 </p>
+</td>
+</tr>
+<tr>
+<td style="width:25%; padding:0px 5px; background-color:#f2f2f2; text-align:left;">
+<p>0683586198171516</p>
+</td>
+<td style="width:55%; padding:0px 5px; background-color:#f2f2f2; text-align:left;">
+<p>010001POS TERM  Refund for returned goods        </p>
+</td>
+<td style="width:20%; padding:0px 5px; background-color:#f2f2f2; text-align:right;">
+<p>         .00 </p>
+</td>
+</tr>
+<tr>
+<td style="width:25%; padding:0px 5px; background-color:#f2f2f2; text-align:left;">
+<p>                </p>
+</td>
+<td style="width:55%; padding:0px 5px; background-color:#f2f2f2; text-align:left;">
+<p>010001POS TERM  Zero-amount authorization        </p>
+</td>
+<td style="width:20%; padding:0px 5px; background-color:#f2f2f2; text-align:right;">
+<p>         .00 </p>
+</td>
+</tr>
+<tr>
+<td colspan="3" style="padding:0px 5px;background-color:#1d1d96b3;">
+<h3>End of Statement</h3>
+</td>
+</tr>
+</table>
+</body>
+</html>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>HTML Table Layout</title>
+</head>
+<body style="margin:0px;">
+<table  align="center" frame="box" style="width:70%; font:12px Segoe UI,sans-serif;">
+<tr>
+<td colspan="3" style="padding:0px 5px;background-color:#1d1d96b3;">
+<h3>Statement for Account Number: 00000000027         </h3>
+</td>
+</tr>
+<tr>
+<td colspan="3" style="padding:0px 5px;background-color:#FFAF33;">
+<p style="font-size:16px">Bank of XYZ</p>
+<p>410 Terry Ave N</p>
+<p>Seattle WA 99999</p>
+</td>
+</tr>
+<tr>
+<td colspan="3" style="padding:0px 5px;background-color:#f2f2f2;">
+<p style="font-size:16px">Mary  </p>
+<p>210 Amaya Turnpike  </p>
+<p>Suite 180  </p>
+<p>Port GU USA 07923-8822  </p>
+</td>
+</tr>
+<tr>
+<td colspan="3" style="padding:0px 5px;background-color:#33FFD1; text-align:center;">
+<p style="font-size:16px">Basic Details</p>
+</td>
+</tr>
+<tr>
+<td colspan="3" style="padding:0px 5px;background-color:#f2f2f2;">
+<p>Account ID         : 00000000027         </p>
+<p>Current Balance    : 000003495.65 </p>
+<p>FICO Score         : 078                 </p>
+</td>
+</tr>
+<tr>
+<td colspan="3" style="padding:0px 5px;background-color:#33FFD1; text-align:center;">
+<p style="font-size:16px">Transaction Summary</p>
+</td>
+</tr>
+<tr>
+<td style="width:25%; padding:0px 5px; background-color:#33FF5E; text-align:left;">
+<p style="font-size:16px">Tran ID</p>
+</td>
+<td style="width:55%; padding:0px 5px; background-color:#33FF5E; text-align:left;">
+<p style="font-size:16px">Tran Details</p>
+</td>
+<td style="width:20%; padding:0px 5px; background-color:#33FF5E; text-align:right;">
+<p style="font-size:16px">Amount</p>
+</td>
+</tr>
+<tr>
+<td style="width:25%; padding:0px 5px; background-color:#f2f2f2; text-align:left;">
+<p>9000000000000013</p>
+</td>
+<td style="width:55%; padding:0px 5px; background-color:#f2f2f2; text-align:left;">
+<p>Refund for returned goods                        </p>
+</td>
+<td style="width:20%; padding:0px 5px; background-color:#f2f2f2; text-align:right;">
+<p>       25.50-</p>
+</td>
+</tr>
+<tr>
+<td style="width:25%; padding:0px 5px; background-color:#f2f2f2; text-align:left;">
+<p>9000000000000014</p>
+</td>
+<td style="width:55%; padding:0px 5px; background-color:#f2f2f2; text-align:left;">
+<p>Zero-amount authorization                        </p>
+</td>
+<td style="width:20%; padding:0px 5px; background-color:#f2f2f2; text-align:right;">
+<p>         .00 </p>
+</td>
+</tr>
+<tr>
+<td style="width:25%; padding:0px 5px; background-color:#f2f2f2; text-align:left;">
+<p>9000000000000015</p>
+</td>
+<td style="width:55%; padding:0px 5px; background-color:#f2f2f2; text-align:left;">
+<p>Five-cent rounding test                          </p>
+</td>
+<td style="width:20%; padding:0px 5px; background-color:#f2f2f2; text-align:right;">
+<p>         .05 </p>
+</td>
+</tr>
+<tr>
+<td style="width:25%; padding:0px 5px; background-color:#f2f2f2; text-align:left;">
+<p>9000000000000016</p>
+</td>
+<td style="width:55%; padding:0px 5px; background-color:#f2f2f2; text-align:left;">
+<p>Largest amount that fits S9(9)V99                </p>
+</td>
+<td style="width:20%; padding:0px 5px; background-color:#f2f2f2; text-align:right;">
+<p>999999999.99 </p>
+</td>
+</tr>
+<tr>
+<td style="width:25%; padding:0px 5px; background-color:#f2f2f2; text-align:left;">
+<p>9000000000000017</p>
+</td>
+<td style="width:55%; padding:0px 5px; background-color:#f2f2f2; text-align:left;">
+<p>Desc of 100 chars: Smith & Sons <Hardware> & Gard</p>
+</td>
+<td style="width:20%; padding:0px 5px; background-color:#f2f2f2; text-align:right;">
+<p>       12.34 </p>
+</td>
+</tr>
+<tr>
+<td colspan="3" style="padding:0px 5px;background-color:#1d1d96b3;">
+<h3>End of Statement</h3>
+</td>
+</tr>
+</table>
+</body>
+</html>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>HTML Table Layout</title>
+</head>
+<body style="margin:0px;">
+<table  align="center" frame="box" style="width:70%; font:12px Segoe UI,sans-serif;">
+<tr>
+<td colspan="3" style="padding:0px 5px;background-color:#1d1d96b3;">
+<h3>Statement for Account Number: 00000000002         </h3>
+</td>
+</tr>
+<tr>
+<td colspan="3" style="padding:0px 5px;background-color:#FFAF33;">
+<p style="font-size:16px">Bank of XYZ</p>
+<p>410 Terry Ave N</p>
+<p>Seattle WA 99999</p>
+</td>
+</tr>
+<tr>
+<td colspan="3" style="padding:0px 5px;background-color:#f2f2f2;">
+<p style="font-size:16px">Enrico April Van  </p>
+<p>12 <Main> & Oak St  </p>
+<p>  </p>
+<p>West IN USA 22770  </p>
+</td>
+</tr>
+<tr>
+<td colspan="3" style="padding:0px 5px;background-color:#33FFD1; text-align:center;">
+<p style="font-size:16px">Basic Details</p>
+</td>
+</tr>
+<tr>
+<td colspan="3" style="padding:0px 5px;background-color:#f2f2f2;">
+<p>Account ID         : 00000000002         </p>
+<p>Current Balance    : 000000123.45-</p>
+<p>FICO Score         : 268                 </p>
+</td>
+</tr>
+<tr>
+<td colspan="3" style="padding:0px 5px;background-color:#33FFD1; text-align:center;">
+<p style="font-size:16px">Transaction Summary</p>
+</td>
+</tr>
+<tr>
+<td style="width:25%; padding:0px 5px; background-color:#33FF5E; text-align:left;">
+<p style="font-size:16px">Tran ID</p>
+</td>
+<td style="width:55%; padding:0px 5px; background-color:#33FF5E; text-align:left;">
+<p style="font-size:16px">Tran Details</p>
+</td>
+<td style="width:20%; padding:0px 5px; background-color:#33FF5E; text-align:right;">
+<p style="font-size:16px">Amount</p>
+</td>
+</tr>
+<tr>
+<td colspan="3" style="padding:0px 5px;background-color:#1d1d96b3;">
+<h3>End of Statement</h3>
+</td>
+</tr>
+</table>
+</body>
+</html>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>HTML Table Layout</title>
+</head>
+<body style="margin:0px;">
+<table  align="center" frame="box" style="width:70%; font:12px Segoe UI,sans-serif;">
+<tr>
+<td colspan="3" style="padding:0px 5px;background-color:#1d1d96b3;">
+<h3>Statement for Account Number: 00000000020         </h3>
+</td>
+</tr>
+<tr>
+<td colspan="3" style="padding:0px 5px;background-color:#FFAF33;">
+<p style="font-size:16px">Bank of XYZ</p>
+<p>410 Terry Ave N</p>
+<p>Seattle WA 99999</p>
+</td>
+</tr>
+<tr>
+<td colspan="3" style="padding:0px 5px;background-color:#f2f2f2;">
+<p style="font-size:16px">Carter  </p>
+<p>5845 Allison Valleys  </p>
+<p>Suite 934  </p>
+<p>Mitchellmouth MH USA 72362  </p>
+</td>
+</tr>
+<tr>
+<td colspan="3" style="padding:0px 5px;background-color:#33FFD1; text-align:center;">
+<p style="font-size:16px">Basic Details</p>
+</td>
+</tr>
+<tr>
+<td colspan="3" style="padding:0px 5px;background-color:#f2f2f2;">
+<p>Account ID         : 00000000020         </p>
+<p>Current Balance    : 000000000.00 </p>
+<p>FICO Score         : 493                 </p>
+</td>
+</tr>
+<tr>
+<td colspan="3" style="padding:0px 5px;background-color:#33FFD1; text-align:center;">
+<p style="font-size:16px">Transaction Summary</p>
+</td>
+</tr>
+<tr>
+<td style="width:25%; padding:0px 5px; background-color:#33FF5E; text-align:left;">
+<p style="font-size:16px">Tran ID</p>
+</td>
+<td style="width:55%; padding:0px 5px; background-color:#33FF5E; text-align:left;">
+<p style="font-size:16px">Tran Details</p>
+</td>
+<td style="width:20%; padding:0px 5px; background-color:#33FF5E; text-align:right;">
+<p style="font-size:16px">Amount</p>
+</td>
+</tr>
+<tr>
+<td style="width:25%; padding:0px 5px; background-color:#f2f2f2; text-align:left;">
+<p>9000000000000018</p>
+</td>
+<td style="width:55%; padding:0px 5px; background-color:#f2f2f2; text-align:left;">
+<p>Purchase at Smith & Sons                         </p>
+</td>
+<td style="width:20%; padding:0px 5px; background-color:#f2f2f2; text-align:right;">
+<p>       10.00 </p>
+</td>
+</tr>
+<tr>
+<td style="width:25%; padding:0px 5px; background-color:#f2f2f2; text-align:left;">
+<p>9000000000000019</p>
+</td>
+<td style="width:55%; padding:0px 5px; background-color:#f2f2f2; text-align:left;">
+<p>Return at <Outlet>                               </p>
+</td>
+<td style="width:20%; padding:0px 5px; background-color:#f2f2f2; text-align:right;">
+<p>        5.00-</p>
+</td>
+</tr>
+<tr>
+<td style="width:25%; padding:0px 5px; background-color:#f2f2f2; text-align:left;">
+<p>9000000000000020</p>
+</td>
+<td style="width:55%; padding:0px 5px; background-color:#f2f2f2; text-align:left;">
+<p>Purchase at Quotes "R" Us                        </p>
+</td>
+<td style="width:20%; padding:0px 5px; background-color:#f2f2f2; text-align:right;">
+<p>      100.00 </p>
+</td>
+</tr>
+<tr>
+<td colspan="3" style="padding:0px 5px;background-color:#1d1d96b3;">
+<h3>End of Statement</h3>
+</td>
+</tr>
+</table>
+</body>
+</html>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>HTML Table Layout</title>
+</head>
+<body style="margin:0px;">
+<table  align="center" frame="box" style="width:70%; font:12px Segoe UI,sans-serif;">
+<tr>
+<td colspan="3" style="padding:0px 5px;background-color:#1d1d96b3;">
+<h3>Statement for Account Number: 00000000050         </h3>
+</td>
+</tr>
+<tr>
+<td colspan="3" style="padding:0px 5px;background-color:#FFAF33;">
+<p style="font-size:16px">Bank of XYZ</p>
+<p>410 Terry Ave N</p>
+<p>Seattle WA 99999</p>
+</td>
+</tr>
+<tr>
+<td colspan="3" style="padding:0px 5px;background-color:#f2f2f2;">
+<p style="font-size:16px">Aniya Alba Von  </p>
+<p>1588 Nienow Cape  </p>
+<p>Suite 187  </p>
+<p>New OR USA 04257  </p>
+</td>
+</tr>
+<tr>
+<td colspan="3" style="padding:0px 5px;background-color:#33FFD1; text-align:center;">
+<p style="font-size:16px">Basic Details</p>
+</td>
+</tr>
+<tr>
+<td colspan="3" style="padding:0px 5px;background-color:#f2f2f2;">
+<p>Account ID         : 00000000050         </p>
+<p>Current Balance    : 000001945.87 </p>
+<p>FICO Score         : 623                 </p>
+</td>
+</tr>
+<tr>
+<td colspan="3" style="padding:0px 5px;background-color:#33FFD1; text-align:center;">
+<p style="font-size:16px">Transaction Summary</p>
+</td>
+</tr>
+<tr>
+<td style="width:25%; padding:0px 5px; background-color:#33FF5E; text-align:left;">
+<p style="font-size:16px">Tran ID</p>
+</td>
+<td style="width:55%; padding:0px 5px; background-color:#33FF5E; text-align:left;">
+<p style="font-size:16px">Tran Details</p>
+</td>
+<td style="width:20%; padding:0px 5px; background-color:#33FF5E; text-align:right;">
+<p style="font-size:16px">Amount</p>
+</td>
+</tr>
+<tr>
+<td style="width:25%; padding:0px 5px; background-color:#f2f2f2; text-align:left;">
+<p>9000000000000021</p>
+</td>
+<td style="width:55%; padding:0px 5px; background-color:#f2f2f2; text-align:left;">
+<p>Purchase on the second card of account 50        </p>
+</td>
+<td style="width:20%; padding:0px 5px; background-color:#f2f2f2; text-align:right;">
+<p>       42.00 </p>
+</td>
+</tr>
+<tr>
+<td colspan="3" style="padding:0px 5px;background-color:#1d1d96b3;">
+<h3>End of Statement</h3>
+</td>
+</tr>
+</table>
+</body>
+</html>
