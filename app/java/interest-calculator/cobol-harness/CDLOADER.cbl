@@ -2,7 +2,7 @@
       * Test harness only: converts CardDemo ASCII sample files into
       * GnuCOBOL indexed (VSAM KSDS stand-in) files and back.
       * Usage: CDLOADER <MODE>   with INFILE / OUTFILE env vars set.
-      *   LOADACCT LOADTCAT LOADXREF LOADXRFA LOADDISC
+      *   LOADACCT LOADTCAT LOADXREF LOADXRFA LOADDISC LOADTTYP LOADTCTG
       *   DUMPACCT DUMPTCAT DUMPTRAN
       ******************************************************************
        IDENTIFICATION DIVISION.
@@ -50,6 +50,16 @@
                   ACCESS MODE  IS SEQUENTIAL
                   RECORD KEY   IS DK-KEY
                   FILE STATUS  IS WS-STAT-KSDS.
+           SELECT TTYP-KSDS ASSIGN TO TRANTYPE
+                  ORGANIZATION IS INDEXED
+                  ACCESS MODE  IS SEQUENTIAL
+                  RECORD KEY   IS YK-TYPE
+                  FILE STATUS  IS WS-STAT-KSDS.
+           SELECT TCTG-KSDS ASSIGN TO TRANCATG
+                  ORGANIZATION IS INDEXED
+                  ACCESS MODE  IS SEQUENTIAL
+                  RECORD KEY   IS GK-KEY
+                  FILE STATUS  IS WS-STAT-KSDS.
        DATA DIVISION.
        FILE SECTION.
        FD  TEXT-IN.
@@ -84,6 +94,14 @@
        01  DISC-KSDS-REC.
            05 DK-KEY                    PIC X(16).
            05 FILLER                    PIC X(34).
+       FD  TTYP-KSDS.
+       01  TTYP-KSDS-REC.
+           05 YK-TYPE                   PIC X(02).
+           05 FILLER                    PIC X(58).
+       FD  TCTG-KSDS.
+       01  TCTG-KSDS-REC.
+           05 GK-KEY                    PIC X(06).
+           05 FILLER                    PIC X(54).
        WORKING-STORAGE SECTION.
        01  WS-MODE                      PIC X(08).
        01  WS-STAT-IN                   PIC XX.
@@ -139,6 +157,24 @@
                  PERFORM READ-IN
                END-PERFORM
                CLOSE TEXT-IN DISC-KSDS
+             WHEN 'LOADTTYP'
+               OPEN INPUT TEXT-IN OUTPUT TTYP-KSDS
+               PERFORM READ-IN
+               PERFORM UNTIL WS-EOF = 'Y'
+                 WRITE TTYP-KSDS-REC FROM TEXT-IN-REC
+                 PERFORM CHECK-KSDS
+                 PERFORM READ-IN
+               END-PERFORM
+               CLOSE TEXT-IN TTYP-KSDS
+             WHEN 'LOADTCTG'
+               OPEN INPUT TEXT-IN OUTPUT TCTG-KSDS
+               PERFORM READ-IN
+               PERFORM UNTIL WS-EOF = 'Y'
+                 WRITE TCTG-KSDS-REC FROM TEXT-IN-REC
+                 PERFORM CHECK-KSDS
+                 PERFORM READ-IN
+               END-PERFORM
+               CLOSE TEXT-IN TCTG-KSDS
              WHEN 'DUMPACCT'
                OPEN INPUT ACCT-KSDS OUTPUT TEXT-OUT
                PERFORM UNTIL WS-EOF = 'Y'
