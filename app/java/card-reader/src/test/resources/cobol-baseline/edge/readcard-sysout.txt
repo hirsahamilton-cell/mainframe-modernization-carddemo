@@ -1,0 +1,9 @@
+START OF EXECUTION OF PROGRAM CBACT02C
+000000000000000100000000001001ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwx2027-01-01Y                                                           
+000000000000000200000000002002SECOND CARD                                       2027-02-02Y                                                           
+000000000000000300000000003003THIRD CARD                                        2027-03-03Y                                                           
+000000000000000400000000004004FOURTH CARD                                       2027-04-04Y                                                           
+000000000000000500000000005005FILLER CARD                                       2027-05-05YNONBLANK-FILLER-123                                        
+000000000000000600000000006006INACTIVE CARD                                     2027-06-06N                                                           
+END OF EXECUTION OF PROGRAM CBACT02C
+RETURN-CODE 0
